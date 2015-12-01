@@ -45,5 +45,10 @@ public class MainActivityView extends AppView {
 
     }
 
+    @Override
+    public void destory(){
+        super.destory();
+        ButterKnife.unbind(this);
+    }
 
 }

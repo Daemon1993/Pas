@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="library-1.1.0">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.zhaokaiqiang.klog/library/1.1.0/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.zhaokaiqiang.klog/library/1.1.0/jars/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.zhaokaiqiang.klog/library/1.1.0/jars/libs/dom4j-2.0.0-RC1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.zhaokaiqiang.klog/library/1.1.0/9f2e651ebed8de374836b57716aaaec1d0e5e808/library-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -12,5 +12,4 @@ public class FragmentMusic extends FragmentPresenter<FragmentMusicView> {
         return FragmentMusicView.class;
     }
 
-
 }

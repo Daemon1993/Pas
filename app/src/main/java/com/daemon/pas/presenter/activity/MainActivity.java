@@ -11,13 +11,14 @@ import android.view.View;
 
 import com.daemon.mvp.presenter.ActivityPresenter;
 import com.daemon.pas.R;
+import com.daemon.pas.presenter.MainAFInterface;
 import com.daemon.pas.presenter.fragment.FragmentMusic;
 import com.daemon.pas.presenter.fragment.FragmentNews;
 import com.daemon.pas.presenter.fragment.FragmentPic;
 import com.daemon.pas.presenter.fragment.FragmentVideo;
 import com.daemon.pas.ui.activity.MainActivityView;
 
-public class MainActivity extends ActivityPresenter<MainActivityView> implements View.OnClickListener {
+public class MainActivity extends ActivityPresenter<MainActivityView> implements View.OnClickListener , MainAFInterface{
 
     private ActionBarDrawerToggle toggle;
 
@@ -49,23 +50,36 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
          * 一些初始化工作 注册事件 涉及到Context Activity相关
          */
         setSupportActionBar(iView.toolbar);
-        toggle = new ActionBarDrawerToggle(this, iView.drawerLayout, iView.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle = new ActionBarDrawerToggle(this, iView.drawerLayout, iView.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+                hideLoadingView();
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                hideLoadingView();
+            }
+        };
+
         toggle.syncState();
         iView.drawerLayout.setDrawerListener(toggle);
 
         iView.setOnClickListener(this, R.id.bt_music, R.id.bt_news, R.id.bt_pic, R.id.bt_video);
 
-
-        current_Fragment=new Fragment();
-        if(fragmentNews==null) {
+        current_Fragment = new Fragment();
+        if (fragmentNews == null) {
             fragmentNews = new FragmentNews();
         }
-
 
         switchFragment(current_Fragment, fragmentNews, TAG_NEWS);
 
         //初始化界面
         updateState(R.id.bt_news, fragmentNews, TAG_NEWS);
+
+
 
     }
 
@@ -77,6 +91,12 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 
     @Override
@@ -106,7 +126,6 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_news:
-
                 if (fragmentNews == null) {
                     fragmentNews = new FragmentNews();
                 }
@@ -129,7 +148,7 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
                 break;
 
             case R.id.bt_pic:
-                
+
                 if (fragmentPic == null) {
                     fragmentPic = new FragmentPic();
                 }
@@ -153,6 +172,7 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
 
     /**
      * 切换
+     *
      * @param id
      * @param fragment
      * @param tag
@@ -186,8 +206,19 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
             current_Fragment = to;
 
         }
+    }
 
 
+
+
+    @Override
+    public void showLoading() {
+        showLoadingView();
+    }
+
+    @Override
+    public void hiheLoading() {
+        hideLoadingView();
     }
 
 }

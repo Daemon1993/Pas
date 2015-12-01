@@ -1,8 +1,14 @@
 <resources>
-    <string name="app_name">Pas</string>
+    <string name="app_name">Biu</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="loading">加载更多...</string>
+    <string name="loadingOver">没有更多了...</string>
 </resources>

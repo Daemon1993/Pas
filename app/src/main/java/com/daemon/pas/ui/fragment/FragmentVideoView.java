@@ -14,6 +14,11 @@ public class FragmentVideoView extends AppView {
     }
 
     @Override
+    public void destory() {
+        super.destory();
+    }
+
+    @Override
     public void initWeidget() {
 
     }

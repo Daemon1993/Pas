@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Pas.iml" filepath="$PROJECT_DIR$/Pas.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/drecyclerviewadapter/drecyclerviewadapter.iml" filepath="$PROJECT_DIR$/drecyclerviewadapter/drecyclerviewadapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvp/mvp.iml" filepath="$PROJECT_DIR$/mvp/mvp.iml" />
     </modules>
   </component>
