@@ -18,15 +18,21 @@ public abstract class AppView implements IView {
     @Override
     public void create(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         int rootLayoutId = getRootLayoutId();
+
         rootView = inflater.inflate(rootLayoutId, container, false);
     }
 
 
     protected abstract int getRootLayoutId();
 
+
+    @Override
+    public void destory() {
+
+    }
+
     @Override
     public View getRootView() {
-
         return rootView;
     }
 

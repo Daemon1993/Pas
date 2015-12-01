@@ -17,4 +17,6 @@ public interface IView {
 
 
     void initWeidget();
+
+    void destory();
 }

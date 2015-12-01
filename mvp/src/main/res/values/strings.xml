@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">mvp</string>
+    <item type="id" name="rootId"></item>
 </resources>
