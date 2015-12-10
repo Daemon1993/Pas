@@ -12,5 +12,5 @@
     <color name="green">#FF34A350</color>
 
     <color name="bg">#eeeeee</color>
-
+    <color name="white">@android:color/white</color>
 </resources>

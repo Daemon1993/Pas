@@ -5,8 +5,6 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.daemon.pas.common.BaseRequest;
-import com.daemon.pas.utils.FileUtil;
 import com.google.gson.Gson;
 import com.socks.library.KLog;
 import com.squareup.okhttp.Call;
@@ -115,10 +113,10 @@ public class OkHttpUtil {
 
                 KLog.json(json);
 
-                File file = new File(BaseRequest.App_Dir);
-                FileUtil.createDir(file.getPath());
-
-                KLog.file(file, json);
+//                File file = new File(BaseRequest.App_Dir);
+//                FileUtil.createDir(file.getPath());
+//
+//                KLog.file(file, json);
 
                 mainHanlder.post(new Runnable() {
                     @Override

@@ -1,13 +1,16 @@
 package com.daemon.pas.presenter.activity;
 
+import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 import com.daemon.mvp.presenter.ActivityPresenter;
 import com.daemon.pas.R;
@@ -17,8 +20,9 @@ import com.daemon.pas.presenter.fragment.FragmentNews;
 import com.daemon.pas.presenter.fragment.FragmentPic;
 import com.daemon.pas.presenter.fragment.FragmentVideo;
 import com.daemon.pas.ui.activity.MainActivityView;
+import com.socks.library.KLog;
 
-public class MainActivity extends ActivityPresenter<MainActivityView> implements View.OnClickListener , MainAFInterface{
+public class MainActivity extends ActivityPresenter<MainActivityView> implements View.OnClickListener, MainAFInterface {
 
     private ActionBarDrawerToggle toggle;
 
@@ -35,7 +39,24 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
     public static final String TAG_MUSIC = "Tag_music";
     public static final String TAG_VIDEO = "Tag_video";
     public static final String TAG_PIC = "Tag_pic";
+    private String old_title;
 
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+
+        if (fragmentNews == null && fragment instanceof FragmentNews) {
+            fragmentNews = (FragmentNews) fragment;
+        } else if (fragmentVideo == null && fragment instanceof FragmentVideo) {
+            fragmentVideo = (FragmentVideo) fragment;
+        } else if (fragmentPic == null && fragment instanceof FragmentPic) {
+            fragmentPic = (FragmentPic) fragment;
+        } else if (fragmentMusic == null && fragment instanceof FragmentMusic) {
+            fragmentMusic = (FragmentMusic) fragment;
+        }
+
+    }
 
     @Override
     public Class<MainActivityView> getIViewClass() {
@@ -45,6 +66,7 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
     @Override
     protected void bindEventListener() {
         super.bindEventListener();
+
 
         /**
          * 一些初始化工作 注册事件 涉及到Context Activity相关
@@ -67,6 +89,9 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
         toggle.syncState();
         iView.drawerLayout.setDrawerListener(toggle);
 
+
+        old_title = getSupportActionBar().getTitle().toString();
+
         iView.setOnClickListener(this, R.id.bt_music, R.id.bt_news, R.id.bt_pic, R.id.bt_video);
 
         current_Fragment = new Fragment();
@@ -78,7 +103,6 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
 
         //初始化界面
         updateState(R.id.bt_news, fragmentNews, TAG_NEWS);
-
 
 
     }
@@ -116,9 +140,37 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_search) {
+
+            showDialogSearch();
+
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showDialogSearch() {
+
+        final EditText editText=new EditText(this);
+
+        AlertDialog alertDialog=new AlertDialog.Builder(this)
+                .setTitle("输入要搜索的图片信息")
+                .setView(editText)
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).setPositiveButton("搜索", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SearchPicActivity.openActivity(MainActivity.this,null);
+                    }
+                }).create();
+
+        alertDialog.show();
+
     }
 
 
@@ -155,6 +207,7 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
 
                 updateState(R.id.bt_music, fragmentPic, TAG_PIC);
                 iView.drawerLayout.closeDrawer(GravityCompat.START);
+
                 break;
 
             case R.id.bt_video:
@@ -202,14 +255,44 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
             } else {
                 transaction.hide(from).show(to).commit();
             }
-
             current_Fragment = to;
+        }
 
+        switch (tag) {
+            case TAG_MUSIC:
+                setToolBarTitle(FragmentMusic.Title);
+
+                break;
+            case TAG_NEWS:
+                setToolBarTitle(FragmentNews.Title);
+
+                break;
+            case TAG_PIC:
+                setToolBarTitle(FragmentPic.Title);
+
+
+                break;
+            case TAG_VIDEO:
+                setToolBarTitle(FragmentVideo.Title);
+
+                break;
         }
     }
 
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
 
+        KLog.e("onPrepareOptionsMenu "+"调用");
+        if (TAG_PIC.equals(current_Fragment_Tag)) {
+            menu.findItem(R.id.action_search).setVisible(true);
+        } else {
+            menu.findItem(R.id.action_search).setVisible(false);
+        }
+
+        return super.onPrepareOptionsMenu(menu);
+
+    }
 
     @Override
     public void showLoading() {
@@ -220,5 +303,16 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
     public void hiheLoading() {
         hideLoadingView();
     }
+
+
+    public void setToolBarTitle(String title) {
+
+        String newTitle = old_title + "-" + title;
+        getSupportActionBar().setTitle(newTitle);
+
+        getSupportActionBar().invalidateOptionsMenu();
+
+    }
+
 
 }

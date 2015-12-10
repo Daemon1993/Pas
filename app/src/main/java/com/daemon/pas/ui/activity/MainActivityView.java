@@ -51,4 +51,8 @@ public class MainActivityView extends AppView {
         ButterKnife.unbind(this);
     }
 
+
+    public void invalidateOptionsMenu() {
+        toolbar.invalidate();
+    }
 }

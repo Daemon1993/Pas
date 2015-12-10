@@ -12,6 +12,4 @@ public interface MainAFInterface {
     void showLoading();
     void hiheLoading();
 
-
-
 }

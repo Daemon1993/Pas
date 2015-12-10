@@ -53,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:text="看视频" />
         </LinearLayout>
+
     </android.support.v4.widget.DrawerLayout>
 
 

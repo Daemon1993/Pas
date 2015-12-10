@@ -1,1 +1,1 @@
-include ':app', ':mvp', ':drecyclerviewadapter'
+include ':app', ':mvp', ':framework'

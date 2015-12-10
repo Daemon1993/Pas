@@ -35,6 +35,7 @@ public class NewsDetailActivity extends ActivityPresenter<NewsDetailView> implem
 
 
         setSupportActionBar(iView.toolbar);
+
         iView.toolbar.setNavigationOnClickListener(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

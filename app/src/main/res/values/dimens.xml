@@ -22,4 +22,8 @@
     <dimen name="new_content_item_marginLeft">2dp</dimen>
 
 
+    <dimen name="pic_recyclerview_padding">5dp</dimen>
+    <dimen name="pic_recyclerview_divider">5dp</dimen>
+
+
 </resources>

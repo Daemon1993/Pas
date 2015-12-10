@@ -2,7 +2,6 @@ package com.daemon.pas.model;
 
 import com.daemon.mvp.model.IModel;
 import com.google.gson.annotations.SerializedName;
-import com.litesuits.orm.db.annotation.Table;
 
 import java.util.List;
 
@@ -10,7 +9,6 @@ import java.util.List;
  * Created by Daemon on 2015/11/26.
  */
 
-@Table("news_table")
 public class NewsItemData extends IModel {
 
 

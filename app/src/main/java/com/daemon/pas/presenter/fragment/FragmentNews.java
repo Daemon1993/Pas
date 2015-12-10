@@ -22,6 +22,9 @@ import java.util.Random;
  * Created by Daemon on 2015/11/25.
  */
 public class FragmentNews extends FragmentPresenter<FragmentNewsView> {
+
+    public static final String Title="新闻";
+
     private NewsTypeData newsType;
     private FragmentNewsAdapter fragmentNewsAdapter;
     private MainAFInterface mListener;
@@ -40,8 +43,14 @@ public class FragmentNews extends FragmentPresenter<FragmentNewsView> {
             mListener = (MainAFInterface) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement MainAFInterface");
         }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener=null;
     }
 
     @Override
@@ -89,31 +98,26 @@ public class FragmentNews extends FragmentPresenter<FragmentNewsView> {
 
             List<Integer> nums = new ArrayList<Integer>();
 
+            //始终保持每次取出来只有5个
+            for (int i = 0; i < 5; i++) {
+                int random = 0;
+                while (true) {
+                    random = getRandom(newsType.getChannellist().size());
+                    //如果获取的随机数里面没有就break 否则从来一次
+                    if (judge(nums, random)) {
+                        nums.add(random);
+                        break;
+                    }
+                }
 
-//            //始终保持每次取出来只有5个
-//            for (int i = 0; i < 5; i++) {
-//                int random = 0;
-//                while (true) {
-//                    random = getRandom(newsType.getChannellist().size());
-//                    //如果获取的随机数里面没有就break 否则从来一次
-//                    if (judge(nums, random)) {
-//                        nums.add(random);
-//                        break;
-//                    }
-//                    ;
-//                }
-//
-//
-//                list.add(newsType.getChannellist().get(random));
-//
-//            }
-            list.addAll(newsType.getChannellist());
+                list.add(newsType.getChannellist().get(random));
+            }
+            //list.addAll(newsType.getChannellist());
 
             //拿到所有新闻的分类 添加tab
             fragmentNewsAdapter = new FragmentNewsAdapter(getChildFragmentManager(), list);
 
-            iView.viewPager.setAdapter(fragmentNewsAdapter);
-            iView.tabnews.setupWithViewPager(iView.viewPager);
+            iView.setViewPagerInit(fragmentNewsAdapter);
 
         }
     }

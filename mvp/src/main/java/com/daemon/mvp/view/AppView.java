@@ -59,4 +59,6 @@ public abstract class AppView implements IView {
             get$(id).setOnClickListener(listener);
         }
     }
+
+
 }

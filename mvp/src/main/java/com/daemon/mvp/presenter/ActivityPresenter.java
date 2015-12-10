@@ -124,7 +124,11 @@ public abstract class ActivityPresenter<T extends IView> extends AppCompatActivi
 
 
 
+
+
+
     public abstract Class<T> getIViewClass();
+
 
 
 

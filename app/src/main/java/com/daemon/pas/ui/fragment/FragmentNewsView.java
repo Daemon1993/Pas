@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 
 import com.daemon.mvp.view.AppView;
 import com.daemon.pas.R;
+import com.daemon.pas.presenter.adapter.FragmentNewsAdapter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,13 +31,12 @@ public class FragmentNewsView extends AppView {
 
     @Override
     public void initWeidget() {
-        super.destory();
         ButterKnife.bind(this,getRootView());
-//
-//        tabnews.addTab(tabnews.newTab().setText("Tab 1"));
-//        tabnews.addTab(tabnews.newTab().setText("Tab 2"));
-//        tabnews.addTab(tabnews.newTab().setText("Tab 3"));
 
     }
 
+    public void setViewPagerInit(FragmentNewsAdapter fragmentNewsAdapter) {
+        viewPager.setAdapter(fragmentNewsAdapter);
+        tabnews.setupWithViewPager(viewPager);
+    }
 }

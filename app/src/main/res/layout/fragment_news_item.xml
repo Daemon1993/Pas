@@ -7,22 +7,16 @@
         android:id="@+id/tv_noData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:text="暂无相关数据"
         android:textSize="@dimen/content_text_size"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 
-    <in.srain.cube.views.ptr.PtrFrameLayout xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/pf_refresh"
+
+    <com.daemon.framework.dpullrefresh_loadmore.DPullRefreshLayout
+        android:id="@+id/drl_refresh_load"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        cube_ptr:ptr_duration_to_close="300"
-        cube_ptr:ptr_duration_to_close_header="2000"
-        cube_ptr:ptr_keep_header_when_refresh="true"
-        cube_ptr:ptr_pull_to_fresh="false"
-        cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
-        cube_ptr:ptr_resistance="1.7">
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rlv_news"
@@ -30,9 +24,8 @@
             android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
+    </com.daemon.framework.dpullrefresh_loadmore.DPullRefreshLayout>
 
-
-    </in.srain.cube.views.ptr.PtrFrameLayout>
 
     <ImageView
         android:id="@+id/iv_2top"
@@ -41,7 +34,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/go2top_margin"
-        android:src="@mipmap/go2top"
-          />
+        android:src="@mipmap/go2top" />
 
 </RelativeLayout>

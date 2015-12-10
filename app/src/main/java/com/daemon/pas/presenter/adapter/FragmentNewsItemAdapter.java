@@ -7,11 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.daemon.drecyclerviewadapter.DBaseRecyclerViewAdapter;
-import com.daemon.drecyclerviewadapter.DBaseRecyclerViewHolder;
+import com.daemon.framework.dproxyutil.image.ImageProxyUtils;
+import com.daemon.framework.drecyclerviewadapter.DBaseRecyclerViewAdapter;
+import com.daemon.framework.drecyclerviewadapter.DBaseRecyclerViewHolder;
 import com.daemon.pas.R;
 import com.daemon.pas.model.NewsItemData;
-import com.daemon.pas.utils.ImageProxyUtils;
 
 import java.util.List;
 

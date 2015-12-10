@@ -11,7 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/drecyclerviewadapter" />
+            <option value="$PROJECT_DIR$/framework" />
             <option value="$PROJECT_DIR$/mvp" />
           </set>
         </option>
@@ -19,7 +19,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/drecyclerviewadapter" />
+            <option value="$PROJECT_DIR$/framework" />
             <option value="$PROJECT_DIR$/mvp" />
           </set>
         </option>
