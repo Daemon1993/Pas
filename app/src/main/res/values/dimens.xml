@@ -26,4 +26,8 @@
     <dimen name="pic_recyclerview_divider">5dp</dimen>
 
 
+    <dimen name="search_margin">10dp</dimen>
+    <dimen name="search_pic_list_margin">5dp</dimen>
+    <dimen name="dialog_search_padding">10dp</dimen>
+
 </resources>

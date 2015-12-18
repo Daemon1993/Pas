@@ -112,6 +112,7 @@ public class ImageProxyUtils implements ImageTypeLoad {
     @Override
     public void loadImageGLIDE() {
 
+
         requestManager
                 .load(url)
                 .crossFade()

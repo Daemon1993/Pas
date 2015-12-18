@@ -13,4 +13,8 @@
 
     <color name="bg">#eeeeee</color>
     <color name="white">@android:color/white</color>
+    <!-- 字体颜色 浅色-->
+    <color name="content_tint_black">#999999</color>
+    <!-- App 黑色字体 -->
+    <color name="content_balck">#252525</color>
 </resources>

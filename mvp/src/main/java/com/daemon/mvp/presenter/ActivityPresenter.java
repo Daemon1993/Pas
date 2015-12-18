@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.daemon.mvp.R;
 import com.daemon.mvp.model.CloseView;
@@ -24,6 +25,11 @@ public abstract class ActivityPresenter<T extends IView> extends AppCompatActivi
     public T iView;
     private ProgressBar progressBar;
     private RelativeLayout mActivityLayout;
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+       // super.onSaveInstanceState(outState);
+    }
 
     /**
      * 初始化 获取V层对象
@@ -130,6 +136,10 @@ public abstract class ActivityPresenter<T extends IView> extends AppCompatActivi
     public abstract Class<T> getIViewClass();
 
 
+    public void isDataError(){
+        Toast.makeText(this,"数据异常",Toast.LENGTH_SHORT).show();
+        return;
+    }
 
 
 }

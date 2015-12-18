@@ -12,4 +12,8 @@
 
     <string name="loading">加载更多...</string>
     <string name="loadingOver">没有更多了...</string>
+
+    <item name="tag_first" type="id"></item>
+    <item name="tag_second" type="id"></item>
+
 </resources>

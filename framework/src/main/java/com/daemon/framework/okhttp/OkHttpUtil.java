@@ -110,6 +110,8 @@ public class OkHttpUtil {
             public void onResponse(Response response) throws IOException {
                 final String json = response.body().string();
 
+                //LogUtils.e(json);
+
                 mainHanlder.post(new Runnable() {
                     @Override
                     public void run() {

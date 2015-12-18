@@ -11,6 +11,21 @@ import java.util.List;
  */
 public abstract class DBaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<DBaseRecyclerViewHolder> {
 
+    public interface ItemOnClickListener{
+        void onclick(int index);
+    }
+
+    ItemOnClickListener mItemOnClickListener;
+
+    public ItemOnClickListener getmItemOnClickListener() {
+        return mItemOnClickListener;
+    }
+
+    public void setmItemOnClickListener(ItemOnClickListener mItemOnClickListener) {
+        this.mItemOnClickListener = mItemOnClickListener;
+    }
+
+
     private List<T> mDatas;
 
     private Context mContext;

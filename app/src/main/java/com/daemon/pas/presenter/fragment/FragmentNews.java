@@ -2,9 +2,9 @@ package com.daemon.pas.presenter.fragment;
 
 import android.content.Context;
 
+import com.daemon.framework.okhttp.OkHttpUtil;
 import com.daemon.mvp.presenter.FragmentPresenter;
 import com.daemon.pas.model.NewsTypeData;
-import com.daemon.pas.okhttp.OkHttpUtil;
 import com.daemon.pas.presenter.MainAFInterface;
 import com.daemon.pas.presenter.activity.MainActivity;
 import com.daemon.pas.presenter.adapter.FragmentNewsAdapter;

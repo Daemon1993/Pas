@@ -1,18 +1,18 @@
 package com.daemon.pas.presenter.activity;
 
-import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 
+import com.daemon.framework.dutils.DensityUtil;
 import com.daemon.mvp.presenter.ActivityPresenter;
+import com.daemon.pas.MyApplication;
 import com.daemon.pas.R;
 import com.daemon.pas.presenter.MainAFInterface;
 import com.daemon.pas.presenter.fragment.FragmentMusic;
@@ -20,9 +20,10 @@ import com.daemon.pas.presenter.fragment.FragmentNews;
 import com.daemon.pas.presenter.fragment.FragmentPic;
 import com.daemon.pas.presenter.fragment.FragmentVideo;
 import com.daemon.pas.ui.activity.MainActivityView;
-import com.socks.library.KLog;
+import com.daemon.pas.ui.dialog.FragmentDialog_Search;
+import com.daemon.pas.utils.ToastUtil;
 
-public class MainActivity extends ActivityPresenter<MainActivityView> implements View.OnClickListener, MainAFInterface {
+public class MainActivity extends ActivityPresenter<MainActivityView> implements View.OnClickListener, MainAFInterface,FragmentDialog_Search.SearchContentListener {
 
     private ActionBarDrawerToggle toggle;
 
@@ -67,6 +68,7 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
     protected void bindEventListener() {
         super.bindEventListener();
 
+           getScreenWH(this);
 
         /**
          * 一些初始化工作 注册事件 涉及到Context Activity相关
@@ -99,12 +101,17 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
             fragmentNews = new FragmentNews();
         }
 
-        switchFragment(current_Fragment, fragmentNews, TAG_NEWS);
-
         //初始化界面
         updateState(R.id.bt_news, fragmentNews, TAG_NEWS);
 
 
+    }
+
+    private void getScreenWH(MainActivity mainActivity) {
+        if(MyApplication.screen_height==0 || MyApplication.screen_width==0){
+            MyApplication.screen_width= DensityUtil.getScreenW(mainActivity);
+            MyApplication.screen_height= DensityUtil.getScreenH(mainActivity);
+        }
     }
 
     @Override
@@ -142,7 +149,13 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
             return true;
         } else if (id == R.id.action_search) {
 
-            showDialogSearch();
+            if(TAG_MUSIC.equals(current_Fragment_Tag)) {
+                if(fragmentMusic!=null){
+                    fragmentMusic.changeData();
+                }
+            }else{
+                showDialogSearch();
+            }
 
             return true;
         }
@@ -150,27 +163,22 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * 显示搜索对话框
+     */
     private void showDialogSearch() {
 
-        final EditText editText=new EditText(this);
 
-        AlertDialog alertDialog=new AlertDialog.Builder(this)
-                .setTitle("输入要搜索的图片信息")
-                .setView(editText)
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+        FragmentDialog_Search fragmentDialog_search=new FragmentDialog_Search();
+        fragmentDialog_search.show(getSupportFragmentManager(),"search");
 
-                    }
-                }).setPositiveButton("搜索", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        SearchPicActivity.openActivity(MainActivity.this,null);
-                    }
-                }).create();
+    }
 
-        alertDialog.show();
-
+    @Override
+    public void onSearchComplete(String key) {
+        Bundle bundle = new Bundle();
+        bundle.putString(SearchPicActivity.Key, key);
+        SearchPicActivity.openActivity(this, bundle);
     }
 
 
@@ -283,10 +291,11 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
 
-        KLog.e("onPrepareOptionsMenu "+"调用");
         if (TAG_PIC.equals(current_Fragment_Tag)) {
             menu.findItem(R.id.action_search).setVisible(true);
-        } else {
+        } else if(TAG_MUSIC.equals(current_Fragment_Tag)){
+                //换一批的按钮
+        }else{
             menu.findItem(R.id.action_search).setVisible(false);
         }
 
@@ -313,6 +322,7 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
         getSupportActionBar().invalidateOptionsMenu();
 
     }
+
 
 
 }

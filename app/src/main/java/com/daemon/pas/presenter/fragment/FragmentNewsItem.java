@@ -12,11 +12,11 @@ import android.widget.TextView;
 import com.daemon.framework.dpullrefresh_loadmore.DPullRefreshLayout;
 import com.daemon.framework.drecyclerviewadapter.DRecyclerViewAdapter;
 import com.daemon.framework.drecyclerviewadapter.DRecyclerViewScrollListener;
+import com.daemon.framework.okhttp.OkHttpUtil;
 import com.daemon.mvp.presenter.FragmentPresenter;
 import com.daemon.pas.R;
 import com.daemon.pas.common.API;
 import com.daemon.pas.model.NewsItemData;
-import com.daemon.pas.okhttp.OkHttpUtil;
 import com.daemon.pas.presenter.MainAFInterface;
 import com.daemon.pas.presenter.activity.MainActivity;
 import com.daemon.pas.presenter.activity.NewsDetailActivity;
@@ -26,7 +26,6 @@ import com.daemon.pas.ui.fragment.FragmentNewsItemView;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
 import com.snappydb.SnappydbException;
-import com.socks.library.KLog;
 import com.squareup.okhttp.Request;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
@@ -114,10 +113,8 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
         if (old_data == null) {
             getData();
         } else {
-            KLog.e("缓存读取 " + old_data);
             setData(old_data);
         }
-
     }
 
 
@@ -193,7 +190,7 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
             url = API.Get_Nes_KB + url_aruments;
         }
 
-        KLog.e("Daemon " + url);
+
 
         Request request = new Request.Builder()
                 .url(url)

@@ -82,6 +82,7 @@ public abstract class DRecyclerViewScrollListener extends RecyclerView.OnScrollL
 
 
         if ((visibleItemCount > 0 && currentScrollState == RecyclerView.SCROLL_STATE_IDLE && (lastVisibleItemPosition) >= totalItemCount - 1)) {
+
             onLoadNextPage(recyclerView);
         }
 

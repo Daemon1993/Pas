@@ -13,15 +13,20 @@ import android.view.ViewGroup;
 public class DBaseRecyclerViewHolder<M> extends RecyclerView.ViewHolder {
 
     public DRecyclerViewAdapter mDRecyclerViewAdapter;
+    public DBaseRecyclerViewAdapter mDBaseRecyclerViewAdapter;
+
+
 
     public DBaseRecyclerViewHolder(View itemView, DBaseRecyclerViewAdapter mDBaseRecyclerViewAdapter) {
         super(itemView);
         this.mDRecyclerViewAdapter = mDBaseRecyclerViewAdapter.getmDRecyclerViewAdapter();
+        this.mDBaseRecyclerViewAdapter = mDBaseRecyclerViewAdapter;
     }
 
     public DBaseRecyclerViewHolder(ViewGroup parent, @LayoutRes int res, DBaseRecyclerViewAdapter mDBaseRecyclerViewAdapter) {
         super(LayoutInflater.from(parent.getContext()).inflate(res, parent, false));
         this.mDRecyclerViewAdapter = mDBaseRecyclerViewAdapter.getmDRecyclerViewAdapter();
+        this.mDBaseRecyclerViewAdapter = mDBaseRecyclerViewAdapter;
     }
 
     protected <T extends View> T $(@IdRes int id) {
@@ -34,11 +39,15 @@ public class DBaseRecyclerViewHolder<M> extends RecyclerView.ViewHolder {
 
     /**
      * 获取点击的item的position
-     *
      * @return
      */
     public int getAdapterItemPosition() {
         int oldPosition =getAdapterPosition();
+
+        if(mDRecyclerViewAdapter==null){
+            return oldPosition;
+        }
+
         if (mDRecyclerViewAdapter.isHeader(oldPosition) || mDRecyclerViewAdapter.isFooter(oldPosition)) {
             return -1;
         } else {
