@@ -7,4 +7,6 @@ public interface ImageTypeLoad {
 
     void loadImageGLIDE();
 
+    void LoadImageUIL();
+
 }

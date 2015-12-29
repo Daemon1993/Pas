@@ -7,6 +7,7 @@ import com.daemon.mvp.presenter.ActivityPresenter;
 import com.daemon.pas.R;
 import com.daemon.pas.common.BaseRequest;
 import com.daemon.pas.ui.activity.ImageDetailView;
+import com.daemon.pas.utils.ToastUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
@@ -38,13 +39,11 @@ public class ImageDetailActivity extends ActivityPresenter<ImageDetailView> impl
         url = getIntent().getStringExtra(URL);
         name = getIntent().getStringExtra(NAME);
 
-
         FileUtil.createDir(dir);
 
         iView.setOnClickListener(this, R.id.bt_download);
 
         iView.showImg(this,url,dir);
-
 
     }
 
@@ -57,6 +56,7 @@ public class ImageDetailActivity extends ActivityPresenter<ImageDetailView> impl
                 File file1 = new File(dir + "/", name + ".jpg");
                 FileUtil.saveFile(this, file, file1);
 
+                ToastUtil.showToast("下载完毕");
                 break;
         }
     }

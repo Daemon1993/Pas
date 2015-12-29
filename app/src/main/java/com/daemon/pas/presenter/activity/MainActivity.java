@@ -11,19 +11,26 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.daemon.framework.dutils.DensityUtil;
+import com.daemon.framework.okhttp.DOkHttp;
 import com.daemon.mvp.presenter.ActivityPresenter;
-import com.daemon.pas.MyApplication;
 import com.daemon.pas.R;
-import com.daemon.pas.presenter.MainAFInterface;
+import com.daemon.pas.common.API;
+import com.daemon.pas.common.AppRunCache;
+import com.daemon.pas.presenter.MainActivityInterface;
 import com.daemon.pas.presenter.fragment.FragmentMusic;
 import com.daemon.pas.presenter.fragment.FragmentNews;
 import com.daemon.pas.presenter.fragment.FragmentPic;
 import com.daemon.pas.presenter.fragment.FragmentVideo;
 import com.daemon.pas.ui.activity.MainActivityView;
 import com.daemon.pas.ui.dialog.FragmentDialog_Search;
-import com.daemon.pas.utils.ToastUtil;
+import com.snappydb.DB;
+import com.snappydb.DBFactory;
+import com.snappydb.SnappydbException;
+import com.squareup.okhttp.Request;
 
-public class MainActivity extends ActivityPresenter<MainActivityView> implements View.OnClickListener, MainAFInterface,FragmentDialog_Search.SearchContentListener {
+import java.io.IOException;
+
+public class MainActivity extends ActivityPresenter<MainActivityView> implements View.OnClickListener, MainActivityInterface, FragmentDialog_Search.SearchContentListener {
 
     private ActionBarDrawerToggle toggle;
 
@@ -41,6 +48,7 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
     public static final String TAG_VIDEO = "Tag_video";
     public static final String TAG_PIC = "Tag_pic";
     private String old_title;
+    private DB snappydb;
 
 
     @Override
@@ -56,8 +64,8 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
         } else if (fragmentMusic == null && fragment instanceof FragmentMusic) {
             fragmentMusic = (FragmentMusic) fragment;
         }
-
     }
+
 
     @Override
     public Class<MainActivityView> getIViewClass() {
@@ -68,7 +76,7 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
     protected void bindEventListener() {
         super.bindEventListener();
 
-           getScreenWH(this);
+        getScreenWH(this);
 
         /**
          * 一些初始化工作 注册事件 涉及到Context Activity相关
@@ -105,14 +113,81 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
         updateState(R.id.bt_news, fragmentNews, TAG_NEWS);
 
 
+        //初始化 获取相关数据
+        /**
+         * 音乐
+         * 图片
+         * 视频
+         */
+
+        getInitData();
+
     }
 
+    /**
+     * 获取音乐
+     * 图片type
+     * 视频的初始化数据
+     * 便利后续页面的显示
+     */
+    private void getInitData() {
+        getMusicData(0);
+    }
+
+
+    /**
+     * 获取音乐数据
+     *
+     * @param type
+     */
+    private void getMusicData(int type) {
+
+
+        String url = API.Muisc_Recommend + type;
+
+        Request request
+                = new Request.Builder()
+                .tag(this)
+                .url(url)
+                .get().build();
+
+        DOkHttp.getInstance().getData4Server(request, new DOkHttp.MyCallBack() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(String json) {
+                //缓存 音乐数据
+                try {
+                    snappydb = DBFactory.open(MainActivity.this);
+                    snappydb.put(AppRunCache.Music_Init_Data, json);
+
+                } catch (SnappydbException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        snappydb.close();
+                    } catch (SnappydbException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        });
+
+
+    }
+
+
     private void getScreenWH(MainActivity mainActivity) {
-        if(MyApplication.screen_height==0 || MyApplication.screen_width==0){
-            MyApplication.screen_width= DensityUtil.getScreenW(mainActivity);
-            MyApplication.screen_height= DensityUtil.getScreenH(mainActivity);
+        if (AppRunCache.screen_height == 0 || AppRunCache.screen_width == 0) {
+            AppRunCache.screen_width = DensityUtil.getScreenW(mainActivity);
+            AppRunCache.screen_height = DensityUtil.getScreenH(mainActivity);
         }
     }
+
 
     @Override
     public void onBackPressed() {
@@ -149,11 +224,11 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
             return true;
         } else if (id == R.id.action_search) {
 
-            if(TAG_MUSIC.equals(current_Fragment_Tag)) {
-                if(fragmentMusic!=null){
+            if (TAG_MUSIC.equals(current_Fragment_Tag)) {
+                if (fragmentMusic != null) {
                     fragmentMusic.changeData();
                 }
-            }else{
+            } else {
                 showDialogSearch();
             }
 
@@ -163,14 +238,31 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        if (TAG_PIC.equals(current_Fragment_Tag)) {
+            menu.findItem(R.id.action_search).setVisible(true);
+        } else if (TAG_MUSIC.equals(current_Fragment_Tag)) {
+            //toolbar的图标改变  换一批
+
+        } else {
+            menu.findItem(R.id.action_search).setVisible(false);
+        }
+
+        return super.onPrepareOptionsMenu(menu);
+
+    }
+
+
     /**
      * 显示搜索对话框
      */
     private void showDialogSearch() {
 
 
-        FragmentDialog_Search fragmentDialog_search=new FragmentDialog_Search();
-        fragmentDialog_search.show(getSupportFragmentManager(),"search");
+        FragmentDialog_Search fragmentDialog_search = new FragmentDialog_Search();
+        fragmentDialog_search.show(getSupportFragmentManager(), "search");
 
     }
 
@@ -205,6 +297,7 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
                 updateState(R.id.bt_music, fragmentMusic, TAG_MUSIC);
 
                 iView.drawerLayout.closeDrawer(GravityCompat.START);
+
                 break;
 
             case R.id.bt_pic:
@@ -269,15 +362,15 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
         switch (tag) {
             case TAG_MUSIC:
                 setToolBarTitle(FragmentMusic.Title);
-
+                iView.setToolBarBgColor(0);
                 break;
             case TAG_NEWS:
                 setToolBarTitle(FragmentNews.Title);
-
+                iView.setToolBarBgColor(1);
                 break;
             case TAG_PIC:
                 setToolBarTitle(FragmentPic.Title);
-
+                iView.setToolBarBgColor(0);
 
                 break;
             case TAG_VIDEO:
@@ -287,21 +380,6 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
         }
     }
 
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-
-        if (TAG_PIC.equals(current_Fragment_Tag)) {
-            menu.findItem(R.id.action_search).setVisible(true);
-        } else if(TAG_MUSIC.equals(current_Fragment_Tag)){
-                //换一批的按钮
-        }else{
-            menu.findItem(R.id.action_search).setVisible(false);
-        }
-
-        return super.onPrepareOptionsMenu(menu);
-
-    }
 
     @Override
     public void showLoading() {
@@ -322,7 +400,6 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
         getSupportActionBar().invalidateOptionsMenu();
 
     }
-
 
 
 }

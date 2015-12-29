@@ -12,12 +12,12 @@ import android.widget.TextView;
 import com.daemon.framework.dpullrefresh_loadmore.DPullRefreshLayout;
 import com.daemon.framework.drecyclerviewadapter.DRecyclerViewAdapter;
 import com.daemon.framework.drecyclerviewadapter.DRecyclerViewScrollListener;
-import com.daemon.framework.okhttp.OkHttpUtil;
+import com.daemon.framework.okhttp.DOkHttp;
 import com.daemon.mvp.presenter.FragmentPresenter;
 import com.daemon.pas.R;
 import com.daemon.pas.common.API;
 import com.daemon.pas.model.NewsItemData;
-import com.daemon.pas.presenter.MainAFInterface;
+import com.daemon.pas.presenter.MainActivityInterface;
 import com.daemon.pas.presenter.activity.MainActivity;
 import com.daemon.pas.presenter.activity.NewsDetailActivity;
 import com.daemon.pas.presenter.adapter.FragmentNewsItemAdapter;
@@ -41,7 +41,6 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
         RecyclerViewListener, DPullRefreshLayout.DPullRefreshLayoutDelegate {
 
 
-
     public static final String CHANNELID = "channelId";
     public static final String CHANNELNAME = "channelName";
     public String id;
@@ -51,7 +50,7 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
 
     ProgressBar pbLoading;
 
-    private MainAFInterface mListener;
+    private MainActivityInterface mListener;
     private LinearLayoutManager linearLayoutManager;
     public FragmentNewsItemAdapter fragmentNewsItemAdapter;
     private DRecyclerViewAdapter dRecyclerViewAdapter;
@@ -77,7 +76,7 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof MainActivity) {
-            mListener = (MainAFInterface) context;
+            mListener = (MainActivityInterface) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -149,6 +148,7 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
 
         //刚进来 不显示 只有下滑了才显示
         footView.setVisibility(View.GONE);
+
         iView.setDrlRefreshLoad(getContext(), this);
 
         iView.rlvNews.addOnScrollListener(new DRecyclerViewScrollListener() {
@@ -191,7 +191,6 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
         }
 
 
-
         Request request = new Request.Builder()
                 .url(url)
                 .get()
@@ -202,7 +201,7 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
             mListener.showLoading();
         }
 
-        OkHttpUtil.getInstance().getData4Server(request, new OkHttpUtil.MyCallBack() {
+        DOkHttp.getInstance().getData4Server(request, new DOkHttp.MyCallBack() {
 
             @Override
             public void onFailure(Request request, IOException e) {
@@ -214,16 +213,21 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
             public void onResponse(String json) {
                 mListener.hiheLoading();
                 iView.setRefreshComplete();
-
-                NewsItemData newsItemData = OkHttpUtil.getInstance().getGson().fromJson(json, NewsItemData.class);
-
-                setData(newsItemData);
-
+                isRefresh=false;
                 try {
+                    NewsItemData newsItemData = DOkHttp.getInstance().getGson().fromJson(json, NewsItemData.class);
+
+                    setData(newsItemData);
                     snappydb.put(id, newsItemData);
-                    snappydb.close();
+
                 } catch (SnappydbException e) {
                     e.printStackTrace();
+                } finally {
+                    try {
+                        snappydb.close();
+                    } catch (SnappydbException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -249,13 +253,15 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
                 iView.scrollToTop();
             }
 
+
         } else {
             if (page == 1) {
+
                 //无数据 显示默认背景？
                 iView.setDataVisible(View.VISIBLE);
-
             }
             if (page > 1) {
+
                 tvMsg.setText(getResources().getString(R.string.loadingOver));
                 pbLoading.setVisibility(View.GONE);
                 isOver = true;
@@ -301,6 +307,8 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
     public void onDPullRefreshLayoutBeginRefreshing(DPullRefreshLayout refreshLayout) {
         page = 1;
         newslist.clear();
+
+        footView.setVisibility(View.GONE);
         dRecyclerViewAdapter.notifyDataSetChanged();
 
         isRefresh = true;

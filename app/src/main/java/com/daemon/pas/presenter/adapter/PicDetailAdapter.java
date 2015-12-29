@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import com.daemon.framework.dproxyutil.image.ImageProxyUtils;
 import com.daemon.framework.drecyclerviewadapter.DBaseRecyclerViewAdapter;
 import com.daemon.framework.drecyclerviewadapter.DBaseRecyclerViewHolder;
-import com.daemon.pas.MyApplication;
 import com.daemon.pas.R;
+import com.daemon.pas.common.AppRunCache;
 import com.daemon.pas.model.PicTypeDetailData;
 
 import java.util.List;
@@ -47,7 +47,7 @@ class PciDetailViewHolder extends DBaseRecyclerViewHolder<PicTypeDetailData.ResE
 
         //int padding = DensityUtil.dip2px(itemView.getContext(), itemView.getContext().getResources().getDimension(R.dimen.search_pic_list_margin));
 
-        w = (MyApplication.screen_width) / 2;
+        w = (AppRunCache.screen_width) / 2;
         h = w;
 
         itemView.setOnClickListener(this);

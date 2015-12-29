@@ -30,4 +30,10 @@
     <dimen name="search_pic_list_margin">5dp</dimen>
     <dimen name="dialog_search_padding">10dp</dimen>
 
+
+    <dimen name="music_main_padding">10dp</dimen>
+
+
+
+
 </resources>

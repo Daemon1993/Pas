@@ -12,8 +12,8 @@ import com.daemon.framework.dproxyutil.image.ImageProxyUtils;
 import com.daemon.framework.drecyclerviewadapter.DBaseRecyclerViewAdapter;
 import com.daemon.framework.drecyclerviewadapter.DBaseRecyclerViewHolder;
 import com.daemon.framework.dutils.DensityUtil;
-import com.daemon.pas.MyApplication;
 import com.daemon.pas.R;
+import com.daemon.pas.common.AppRunCache;
 import com.daemon.pas.model.PicTypeData;
 
 import java.util.List;
@@ -69,7 +69,7 @@ class FragmentPicViewHolder extends DBaseRecyclerViewHolder<PicTypeData.ResEntit
     public FragmentPicViewHolder(ViewGroup parent, @LayoutRes int res, DBaseRecyclerViewAdapter mDBaseRecyclerViewAdapter) {
         super(parent, res, mDBaseRecyclerViewAdapter);
 
-        w = (MyApplication.screen_width - 1 * DensityUtil.dip2px(parent.getContext(), 5))/2;
+        w = (AppRunCache.screen_width - 1 * DensityUtil.dip2px(parent.getContext(), 5))/2;
         h=w/2;
 
         //KLog.e("w "+w +"   h "+h);

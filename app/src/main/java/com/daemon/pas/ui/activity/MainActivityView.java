@@ -49,10 +49,22 @@ public class MainActivityView extends AppView {
     public void destory(){
         super.destory();
         ButterKnife.unbind(this);
+
     }
 
 
     public void invalidateOptionsMenu() {
         toolbar.invalidate();
+    }
+
+    public void setToolBarBgColor(int i) {
+        switch (i){
+            case 0:
+                toolbar.setBackgroundColor(getRootView().getResources().getColor(R.color.colorAccent));
+                break;
+            case 1:
+                toolbar.setBackgroundColor(getRootView().getResources().getColor(R.color.colorPrimary));
+                break;
+        }
     }
 }

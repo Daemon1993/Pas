@@ -2,10 +2,10 @@ package com.daemon.pas.presenter.fragment;
 
 import android.content.Context;
 
-import com.daemon.framework.okhttp.OkHttpUtil;
+import com.daemon.framework.okhttp.DOkHttp;
 import com.daemon.mvp.presenter.FragmentPresenter;
 import com.daemon.pas.model.NewsTypeData;
-import com.daemon.pas.presenter.MainAFInterface;
+import com.daemon.pas.presenter.MainActivityInterface;
 import com.daemon.pas.presenter.activity.MainActivity;
 import com.daemon.pas.presenter.adapter.FragmentNewsAdapter;
 import com.daemon.pas.ui.fragment.FragmentNewsView;
@@ -27,7 +27,7 @@ public class FragmentNews extends FragmentPresenter<FragmentNewsView> {
 
     private NewsTypeData newsType;
     private FragmentNewsAdapter fragmentNewsAdapter;
-    private MainAFInterface mListener;
+    private MainActivityInterface mListener;
     private List<NewsTypeData.ChannellistEntity> list;
 
 
@@ -40,7 +40,7 @@ public class FragmentNews extends FragmentPresenter<FragmentNewsView> {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof MainActivity) {
-            mListener = (MainAFInterface) context;
+            mListener = (MainActivityInterface) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement MainAFInterface");
@@ -92,7 +92,7 @@ public class FragmentNews extends FragmentPresenter<FragmentNewsView> {
      * @param result
      */
     private void setData(String result) {
-        newsType = OkHttpUtil.getInstance().getGson().fromJson(result, NewsTypeData.class);
+        newsType = DOkHttp.getInstance().getGson().fromJson(result, NewsTypeData.class);
 
         if (newsType != null && newsType.getChannellist() != null) {
 

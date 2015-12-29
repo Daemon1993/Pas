@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- SEEKBAR背景底部的颜色 -->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="5dip" />
+            <solid android:color="@color/white"/>
+        </shape>
+    </item>
+    <!-- 拖动后的颜色 -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="5dip" />
+                <solid android:color="@color/colorAccent"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>

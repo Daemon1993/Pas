@@ -32,4 +32,19 @@ public class API {
 
 
 
+    //public static final String Music_Play="http://search.dongting.com/artwork/search?singerid=55480&song_id=25011637";
+    public static final String Music_Play="http://search.dongting.com/artwork/search?singerid=";
+
+
+    //获取歌词前一步 拿到id
+    public static final String Music_Get_Lrc1="http://search.dongting.com" +
+            "/lyric/search?sign=457d14c89fcb9b920bbdc2698f3603a3&" +
+            "utdid=Vgny1yVrWZsDAJwcljC18b%2Bg";
+
+    public static final String getMusic_Get_Lrc2="http://search.dongting.com/lyric/content?sign=ce73d2c0ebc4f82f87d077aa6c4f87cc&" +
+            "utdid=Vgny1yVrWZsDAJwcljC18b%2Bg&";
+
+
+
+
 }
