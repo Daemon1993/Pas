@@ -12,13 +12,13 @@ https://github.com/bboyfeiyu/android-tech-frontier/tree/master/androidweekly/%E4
 项目包括 四个部分 没做完 也没得啥规范  有时间就实现一点 
 
 - 新闻   
-- [!GIF](https://github.com/Daemon1993/Pas/blob/master/pics/new.gif)
+- ![](https://github.com/Daemon1993/Pas/blob/master/pics/new.gif)
       数据来自天天快报 如有侵权 请及时告知 
 - 图片   
-- [](https://github.com/Daemon1993/Pas/blob/master/pics/pic.gif)
+- ![](https://github.com/Daemon1993/Pas/blob/master/pics/pic.gif)
      数据来自android壁纸 如有侵权 请及时告知
 - 音乐   
-- - [](https://github.com/Daemon1993/Pas/blob/master/pics/music.gif)
+-![](https://github.com/Daemon1993/Pas/blob/master/pics/music.gif)
      数据来自天天动听 如有侵权 请及时告知
 - 视频   
 
