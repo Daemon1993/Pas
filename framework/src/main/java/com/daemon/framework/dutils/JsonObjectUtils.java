@@ -1,5 +1,6 @@
 package com.daemon.framework.dutils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,20 +11,35 @@ import org.json.JSONObject;
 public class JsonObjectUtils {
 
     /**
-     *
      * @param json
      * @param code
      * @return
      */
-    public static String getString(String json, String code) {
+    public static String getString(String json, String code) throws JSONException {
         String result = "";
-        try {
-            JSONObject jsonObject = new JSONObject(json);
-            result = jsonObject.getString(code);
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return "";
-        }
+
+        JSONObject jsonObject = new JSONObject(json);
+        result = jsonObject.getString(code);
+
         return result;
     }
+
+    public static int getInt(String data, String type) throws JSONException {
+        int result=-1;
+
+        JSONObject jsonObject = new JSONObject(data);
+        result = jsonObject.getInt(type);
+
+        return result;
+    }
+
+    public static JSONArray getArray(String data, String type) throws JSONException {
+        JSONArray result=null;
+
+        JSONObject jsonObject = new JSONObject(data);
+        result = jsonObject.getJSONArray(type);
+
+        return result;
+    }
+
 }

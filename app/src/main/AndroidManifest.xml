@@ -28,6 +28,8 @@
         <activity android:name=".presenter.activity.SearchPicActivity" />
         <activity android:name=".presenter.activity.PicTypeDetailActivity" />
         <activity android:name=".presenter.activity.ImageDetailActivity"></activity>
+
+        <service android:name=".presenter.service.music.MusicPlayService"/>
     </application>
 
 </manifest>

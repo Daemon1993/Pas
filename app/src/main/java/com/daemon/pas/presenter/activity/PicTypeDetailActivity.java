@@ -14,7 +14,7 @@ import com.daemon.framework.drecyclerviewadapter.DBaseRecyclerViewAdapter;
 import com.daemon.framework.drecyclerviewadapter.DRecyclerViewAdapter;
 import com.daemon.framework.drecyclerviewadapter.DRecyclerViewScrollListener;
 import com.daemon.framework.drecyclerviewadapter.DSpanSizeLookup;
-import com.daemon.framework.okhttp.OkHttpUtil;
+import com.daemon.framework.okhttp.DOkHttp;
 import com.daemon.mvp.presenter.ActivityPresenter;
 import com.daemon.pas.R;
 import com.daemon.pas.common.API;
@@ -162,7 +162,7 @@ public class PicTypeDetailActivity extends ActivityPresenter<SearchPicActivityVi
 
 
 
-        OkHttpUtil.getInstance().getData4Server(request, new OkHttpUtil.MyCallBack() {
+        DOkHttp.getInstance().getData4Server(request, new DOkHttp.MyCallBack() {
             @Override
             public void onFailure(Request request, IOException e) {
 
@@ -173,7 +173,7 @@ public class PicTypeDetailActivity extends ActivityPresenter<SearchPicActivityVi
 
                 PicTypeDetailData picData = null;
                 try {
-                    picData = OkHttpUtil.getInstance().getGson().fromJson(json, PicTypeDetailData.class);
+                    picData = DOkHttp.getInstance().getGson().fromJson(json, PicTypeDetailData.class);
 
                     if (picData.getRes() != null && picData.getRes().getWallpaper() != null && picData.getRes().getWallpaper().size() != 0) {
                         if (picData.getRes().getWallpaper().size() < 30) {

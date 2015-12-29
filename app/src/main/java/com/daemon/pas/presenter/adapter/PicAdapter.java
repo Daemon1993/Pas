@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import com.daemon.framework.dproxyutil.image.ImageProxyUtils;
 import com.daemon.framework.drecyclerviewadapter.DBaseRecyclerViewAdapter;
 import com.daemon.framework.drecyclerviewadapter.DBaseRecyclerViewHolder;
-import com.daemon.pas.MyApplication;
 import com.daemon.pas.R;
+import com.daemon.pas.common.AppRunCache;
 import com.daemon.pas.model.PicData;
 
 import java.util.List;
@@ -43,7 +43,7 @@ class PicViewHolder extends DBaseRecyclerViewHolder<PicData.ResEntity.WallpaperE
 
         ic_show = $(R.id.iv_show);
 
-        w = (MyApplication.screen_width) / 3;
+        w = (AppRunCache.screen_width) / 3;
         h = w;
 
         itemView.setOnClickListener(this);

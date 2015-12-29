@@ -6,7 +6,7 @@
         android:id="@+id/action_search"
         android:orderInCategory="80"
         android:title="action_search"
-        android:icon="@mipmap/seach"
+        android:icon="@mipmap/ic_action_search"
         app:showAsAction="ifRoom"/>
 
     <item

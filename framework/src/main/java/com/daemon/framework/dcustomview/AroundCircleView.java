@@ -17,7 +17,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.apkfuns.logutils.LogUtils;
 import com.daemon.framework.R;
 
 
@@ -36,7 +35,8 @@ public class AroundCircleView extends ImageView {
     private static final int COLORDRAWABLE_DIMENSION = 1;
 
     private static final int DEFAULT_BORDER_WIDTH = 0;
-    private static final int DEFAULT_BORDER_COLOR = Color.BLACK;
+    private static final int DEFAULT_BORDER_COLOR = Color.GREEN;
+    private static final int DEFAULT_BORDER_COLOR_BG = Color.WHITE;
 
     private final RectF mDrawableRect = new RectF();
     private final RectF mBorderRect = new RectF();
@@ -45,7 +45,10 @@ public class AroundCircleView extends ImageView {
     private final Paint mBitmapPaint = new Paint();
     private final Paint mBorderPaint = new Paint();
 
+    private final Paint mBorderPaint_bg = new Paint();
+
     private int mBorderColor = DEFAULT_BORDER_COLOR;
+    private int mBorderColor_bg = DEFAULT_BORDER_COLOR_BG;
     private int mBorderWidth = DEFAULT_BORDER_WIDTH;
 
     private Bitmap mBitmap;
@@ -84,6 +87,9 @@ public class AroundCircleView extends ImageView {
         mBorderColor = a.getColor(R.styleable.AroundCircleView_textColor,
                 DEFAULT_BORDER_COLOR);
 
+        mBorderColor_bg = a.getColor(R.styleable.AroundCircleView_textBgColor,
+                DEFAULT_BORDER_COLOR_BG);
+
         a.recycle();
 
         mReady = true;
@@ -116,11 +122,13 @@ public class AroundCircleView extends ImageView {
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, mDrawableRadius,
                 mBitmapPaint); // 里面的图片
 
-        LogUtils.e("newAngle " + newAngle);
+        if (mBorderWidth != 0) {
+            //周边底部颜色 一般为白色
+            canvas.drawArc(mBorderRect, -90, 360, false, mBorderPaint_bg);
 
-        //设置了周边弧度的宽度 每次重新绘制都要画上边上的弧度
-        canvas.drawArc(mBorderRect, -90, newAngle, false, mBorderPaint);
-
+            //设置了周边弧度的宽度 每次重新绘制都要画上边上的弧度
+            canvas.drawArc(mBorderRect, -90, newAngle, false, mBorderPaint);
+        }
 
     }
 
@@ -254,6 +262,11 @@ public class AroundCircleView extends ImageView {
         mBorderPaint.setAntiAlias(true);
         mBorderPaint.setColor(mBorderColor);
         mBorderPaint.setStrokeWidth(mBorderWidth);
+
+        mBorderPaint_bg.setStyle(Paint.Style.STROKE);
+        mBorderPaint_bg.setAntiAlias(true);
+        mBorderPaint_bg.setColor(mBorderColor_bg);
+        mBorderPaint_bg.setStrokeWidth(mBorderWidth);
 
 
         mBitmapHeight = mBitmap.getHeight();

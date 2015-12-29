@@ -8,6 +8,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.daemon.framework.dutils.ImageLoaderSetting;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by h2h on 2015/10/29.
@@ -16,9 +18,8 @@ public class ImageProxyUtils implements ImageTypeLoad {
 
 
     //后续要增加或者改变就在这里天就 下面的TYPE修改
-
-
     public static final int TYPE_GLIDE = 1;
+    public static final int TYPE_UIL = 2;
 
 
     public static int TYPE = TYPE_GLIDE;
@@ -99,6 +100,10 @@ public class ImageProxyUtils implements ImageTypeLoad {
                 loadImageGLIDE();
                 break;
 
+            case TYPE_UIL:
+                LoadImageUIL();
+
+                break;
             default:
                 break;
         }
@@ -118,5 +123,10 @@ public class ImageProxyUtils implements ImageTypeLoad {
                 .crossFade()
                 .into(mImage);
 
+    }
+
+    @Override
+    public void LoadImageUIL() {
+        ImageLoader.getInstance().displayImage(url,mImage, ImageLoaderSetting.defaultOptions,ImageLoaderSetting.animateFirstListener);
     }
 }

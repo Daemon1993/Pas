@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 
 import com.daemon.framework.dcustomview.DividerGridItemDecoration;
-import com.daemon.framework.okhttp.OkHttpUtil;
+import com.daemon.framework.okhttp.DOkHttp;
 import com.daemon.mvp.presenter.FragmentPresenter;
 import com.daemon.pas.common.API;
 import com.daemon.pas.model.PicTypeData;
-import com.daemon.pas.presenter.MainAFInterface;
+import com.daemon.pas.presenter.MainActivityInterface;
 import com.daemon.pas.presenter.activity.MainActivity;
 import com.daemon.pas.presenter.activity.PicTypeDetailActivity;
 import com.daemon.pas.presenter.adapter.FragmentPicAdapter;
@@ -28,7 +28,7 @@ public class FragmentPic extends FragmentPresenter<FragmentPicView> {
 
     public static final String Title = "美图";
 
-    private MainAFInterface mListener;
+    private MainActivityInterface mListener;
     private List<PicTypeData.ResEntity.CategoryEntity> lists;
     private FragmentPicAdapter fragmentPicAdapter;
 
@@ -43,7 +43,7 @@ public class FragmentPic extends FragmentPresenter<FragmentPicView> {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof MainActivity) {
-            mListener = (MainAFInterface) context;
+            mListener = (MainActivityInterface) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement MainAFInterface");
@@ -82,7 +82,7 @@ public class FragmentPic extends FragmentPresenter<FragmentPicView> {
 
         mListener.showLoading();
 
-        OkHttpUtil.getInstance().getData4Server(request, new OkHttpUtil.MyCallBack() {
+        DOkHttp.getInstance().getData4Server(request, new DOkHttp.MyCallBack() {
             @Override
             public void onFailure(Request request, IOException e) {
                 mListener.hiheLoading();
@@ -92,7 +92,7 @@ public class FragmentPic extends FragmentPresenter<FragmentPicView> {
             public void onResponse(String json) {
                 mListener.hiheLoading();
 
-                PicTypeData picTypeData = OkHttpUtil.getInstance().getGson().fromJson(json, PicTypeData.class);
+                PicTypeData picTypeData = DOkHttp.getInstance().getGson().fromJson(json, PicTypeData.class);
 
                 lists.addAll(picTypeData.getRes().getCategory());
 

@@ -3,6 +3,7 @@
     <declare-styleable name="AroundCircleView">
         <attr name="textColor" format="color" />
         <attr name="textSize" format="dimension" />
+        <attr name="textBgColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="CircleImageView">

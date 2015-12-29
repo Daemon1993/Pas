@@ -7,6 +7,9 @@ import android.os.Environment;
  */
 public class BaseRequest {
 
+    /**
+     * 程序缓存的目录
+     */
     public static final String App_Dir= Environment.getExternalStorageDirectory()+"/Pas/";
 
 
@@ -18,6 +21,9 @@ public class BaseRequest {
 
 
     public static final String SUCCESS="success";
+
+
+    public static final String Error_Msg="爆炸 接口爆炸了";
 
 
 
