@@ -26,9 +26,14 @@ public class MusicPlayService extends Service  {
     public void onCreate() {
         super.onCreate();
         mMusicPlayer=new MusicPlayer(this);
+<<<<<<< HEAD
     }
 
 
+=======
+
+    }
+>>>>>>> origin/master
 
     @Override
     public void onDestroy() {

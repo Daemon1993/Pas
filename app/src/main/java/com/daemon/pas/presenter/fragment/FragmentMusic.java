@@ -46,6 +46,10 @@ public class FragmentMusic extends FragmentPresenter<FragmentMusicView> implemen
     public static String Title = "音乐";
     private List<MusicMainData.DataEntity.SongsEntity> lists;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     private int type;
     private MainActivityInterface mListener;
 
@@ -110,6 +114,52 @@ public class FragmentMusic extends FragmentPresenter<FragmentMusicView> implemen
         }
 
         initView();
+<<<<<<< HEAD
+
+        iView.setOnClickListener(this, R.id.iv_previous, R.id.iv_next, R.id.iv_play_pause, R.id.iv_icon, R.id.lv_content);
+
+        iView.setSeekBarListener(this);
+
+        mLocalBroadcastManager = LocalBroadcastManager.getInstance(getContext());
+
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(IntentFilterUtils.Music_Prepared_OK);
+        intentFilter.addAction(IntentFilterUtils.Music_Pause);
+        intentFilter.addAction(IntentFilterUtils.Music_Resume);
+        intentFilter.addAction(IntentFilterUtils.Progress_Update);
+        intentFilter.addAction(IntentFilterUtils.Position);
+
+        //广播注册
+        myReceiver = new MusicPlayBroadReceiver();
+        mLocalBroadcastManager.registerReceiver(myReceiver, intentFilter);
+
+
+        //启动服务
+        service = new Intent();
+        service.setClass(getActivity(), MusicPlayService.class);
+
+        if (TextUtils.isEmpty(old_json)) {
+            getData(type);
+        } else {
+            praseDataByJson(old_json, type);
+        }
+
+    }
+
+    private void getData(final int type) {
+
+        String url = API.Muisc_Recommend + type;
+
+        Request request
+                = new Request.Builder()
+                .tag(this)
+                .url(url)
+                .get().build();
+
+        DOkHttp.getInstance().getData4Server(request, new DOkHttp.MyCallBack() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+=======
 
         iView.setOnClickListener(this, R.id.iv_previous, R.id.iv_next, R.id.iv_play_pause, R.id.iv_icon, R.id.lv_content);
 
@@ -156,6 +206,12 @@ public class FragmentMusic extends FragmentPresenter<FragmentMusicView> implemen
             public void onFailure(Request request, IOException e) {
 
             }
+>>>>>>> origin/master
+
+            @Override
+            public void onResponse(String json) {
+                praseDataByJson(json, type);
+            }
 
             @Override
             public void onResponse(String json) {
@@ -179,6 +235,7 @@ public class FragmentMusic extends FragmentPresenter<FragmentMusicView> implemen
                     }
 
                 }
+<<<<<<< HEAD
 
                 if (isFirst) {
                     getActivity().startService(service);
@@ -218,6 +275,47 @@ public class FragmentMusic extends FragmentPresenter<FragmentMusicView> implemen
 
         getLrc(url_lrc);
 
+=======
+
+                if (isFirst) {
+                    getActivity().startService(service);
+                }
+
+                if (type == 1) {
+                    Intent intent0 = new Intent(IntentFilterUtils.Music_Reset);
+                    mLocalBroadcastManager.sendBroadcast(intent0);
+                }
+
+
+                iView.setSongName(lists.get(current_index_playing));
+
+                if (type == 0) {
+                    //获取第一首歌的播放数据
+                    showSongMsg(lists.get(current_index_playing));
+                }
+            }
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+            ToastUtil.showToast("praseDataByJson Error");
+        }
+
+    }
+
+    /**
+     * 显示歌曲信息 还未播放  点击之后  或者service通知才开始获取图片信息
+     *
+     * @param data
+     */
+    private void showSongMsg(final MusicMainData.DataEntity.SongsEntity data) {
+
+
+        //获取歌词
+        String url_lrc = API.Music_Get_Lrc1 + "&duration_ms=" + data.getUrlList().get(0).getDuration() + "&title=" + data.getName() + "&song_id=" + data.getSongId()
+                + "&artist=" + data.getSingerName();
+
+        getLrc(url_lrc);
+
+>>>>>>> origin/master
 
         String url = API.Music_Play + data.getSingerId() + "&song_id=" + data.getSongId();
 
@@ -240,6 +338,7 @@ public class FragmentMusic extends FragmentPresenter<FragmentMusicView> implemen
                     MusicPlayData musicPlayData = DOkHttp.getInstance().getGson().fromJson(json, MusicPlayData.class);
 
                     if (musicPlayData.getData() != null && musicPlayData.getData().size() > 0) {
+<<<<<<< HEAD
 
                         music_Play_Current_picData = musicPlayData.getData().get(0);
 
@@ -292,6 +391,60 @@ public class FragmentMusic extends FragmentPresenter<FragmentMusicView> implemen
                     if (data == null || data.length() == 0) {
                         throw new RuntimeException("123");
                     }
+=======
+
+                        music_Play_Current_picData = musicPlayData.getData().get(0);
+
+                        if (musicPlayData.getData().get(0).getPicUrls() == null || musicPlayData.getData().get(0).getPicUrls().size() == 0) {
+                            musicPlayData.getData().get(0).setPicUrls(new ArrayList<MusicPlayData.DataEntity.PicUrlsEntity>());
+                            musicPlayData.getData().get(0).getPicUrls().add(new MusicPlayData.DataEntity.PicUrlsEntity());
+                        }
+                        showPic(music_Play_Current_picData);
+
+                    } else {
+                        throw new RuntimeException("123");
+                    }
+                } catch (JsonSyntaxException e) {
+                    e.printStackTrace();
+                    ToastUtil.showToast(BaseRequest.Error_Msg);
+                }
+
+            }
+        });
+
+    }
+
+
+    /**
+     * 获取歌词
+     *
+     * @param url_lrc
+     */
+    private void getLrc(String url_lrc) {
+
+        DLog.e(url_lrc);
+
+        Request request = new Request.Builder()
+                .get()
+                .url(url_lrc)
+                .tag(this)
+                .build();
+
+        DOkHttp.getInstance().getData4Server(request, new DOkHttp.MyCallBack() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(String json) {
+                try {
+                    JSONArray data = JsonObjectUtils.getArray(json, "data");
+
+                    if (data == null || data.length() == 0) {
+                        throw new RuntimeException("123");
+                    }
+>>>>>>> origin/master
                     JSONObject jsonObject = data.getJSONObject(0);
 
                     String lrcid = jsonObject.getString("_id");
@@ -302,7 +455,11 @@ public class FragmentMusic extends FragmentPresenter<FragmentMusicView> implemen
                     getLrc2(lrcid, type, singer_name, song_name);
                 } catch (Exception e) {
                     e.printStackTrace();
+<<<<<<< HEAD
                     iView.setLrcContent(null);
+=======
+                    ToastUtil.showToast("暂无歌词");
+>>>>>>> origin/master
                 }
             }
         });
@@ -353,7 +510,11 @@ public class FragmentMusic extends FragmentPresenter<FragmentMusicView> implemen
 
                 } catch (Exception e) {
                     e.printStackTrace();
+<<<<<<< HEAD
                     iView.setLrcContent(null);
+=======
+                    ToastUtil.showToast("拿不到一点歌词");
+>>>>>>> origin/master
                 }
             }
         });
@@ -368,7 +529,10 @@ public class FragmentMusic extends FragmentPresenter<FragmentMusicView> implemen
     private void showLrc(String lrc_content) {
         DLog.e(lrc_content);
         iView.setLrcContent(lrc_content);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
     }
 
     /**

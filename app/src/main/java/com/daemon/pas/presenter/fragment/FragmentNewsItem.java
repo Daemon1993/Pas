@@ -213,7 +213,11 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
             public void onResponse(String json) {
                 mListener.hiheLoading();
                 iView.setRefreshComplete();
+<<<<<<< HEAD
                 isRefresh=false;
+=======
+
+>>>>>>> origin/master
                 try {
                     NewsItemData newsItemData = DOkHttp.getInstance().getGson().fromJson(json, NewsItemData.class);
 
@@ -222,7 +226,11 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
 
                 } catch (SnappydbException e) {
                     e.printStackTrace();
+<<<<<<< HEAD
                 } finally {
+=======
+                }finally {
+>>>>>>> origin/master
                     try {
                         snappydb.close();
                     } catch (SnappydbException e) {

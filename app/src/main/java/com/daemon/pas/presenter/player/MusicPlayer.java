@@ -39,14 +39,20 @@ public class MusicPlayer implements BaseMusicPlayer, MediaPlayer.OnPreparedListe
     private IntentFilter intentFilter;
     private MusicPlayBroadReceiver myReceiver;
 
+<<<<<<< HEAD
     private boolean isDestroy=false;
 
+=======
+>>>>>>> origin/master
 
     public MusicPlayer(Context context) {
 
         Music_State = State_Stop;
         mediaPlayer = new MediaPlayer();
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
         musicList = AppRunCache.musicList;
 
         intentFilter = new IntentFilter();
@@ -287,15 +293,21 @@ public class MusicPlayer implements BaseMusicPlayer, MediaPlayer.OnPreparedListe
         }else {
             //只要缓冲完了 就将真个音乐的size传送
             sendMusicSize();
+<<<<<<< HEAD
             Music_State=State_Pasue;
+=======
+>>>>>>> origin/master
             DLog.e("onPrepared stop" + musicList.size() + "  -> " + play_index);
         }
 
 
     }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/master
     private void sendMusicSize() {
         //有位置就播放 没有就显示大小
         Intent intent = new Intent(IntentFilterUtils.Music_Prepared_OK);

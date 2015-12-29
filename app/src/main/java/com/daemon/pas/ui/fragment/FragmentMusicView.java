@@ -151,8 +151,11 @@ public class FragmentMusicView extends AppView {
     public void setCurrentTime(int size) {
         tvCurrentTime.setText(TimeUtils.transformationMS(size));
 
+<<<<<<< HEAD
         //更新 歌词显示位置
         lvContent.setCurrentTime(size);
+=======
+>>>>>>> origin/master
     }
 
     public void setSbProgress(int progress) {
@@ -166,7 +169,10 @@ public class FragmentMusicView extends AppView {
         //setDefautImage();
         tvCurrentTime.setText("00:00");
         tvEndTime.setText("00:00");
+<<<<<<< HEAD
         lvContent.setText("");
+=======
+>>>>>>> origin/master
     }
 
     public void showMusicPic(String picUrl) {
@@ -199,6 +205,7 @@ public class FragmentMusicView extends AppView {
                 }
                 ToastUtil.showToast(message);
             }
+<<<<<<< HEAD
 
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
@@ -215,6 +222,24 @@ public class FragmentMusicView extends AppView {
                     setRlBgBlur(drawable);
                 }
 
+=======
+
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+
+                if (loadedImage != null) {
+                    setImageBitmap(loadedImage);
+                    Bitmap bitmap = BitmapBlurHelper.doBlurJniBitMap(loadedImage, 50, false);
+
+                    if (bitmap == null) {
+                        //获取背景图片失败  使用默认黑色背景 需要图片
+                        return;
+                    }
+                    BitmapDrawable drawable = new BitmapDrawable(getRootView().getResources(), bitmap);
+                    setRlBgBlur(drawable);
+                }
+
+>>>>>>> origin/master
             }
         });
     }
@@ -244,7 +269,10 @@ public class FragmentMusicView extends AppView {
     }
 
     public void setLrcContent(String lrc_content) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
         lvContent.setLrcContent(lrc_content);
     }
 

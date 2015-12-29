@@ -104,7 +104,11 @@ public class DOkHttp {
             public void onResponse(Response response) throws IOException {
                 final String json = response.body().string();
 
+<<<<<<< HEAD
                 //DLog.e(json);
+=======
+                //LogUtils.e(json);
+>>>>>>> origin/master
 
                 mainHanlder.post(new Runnable() {
                     @Override
