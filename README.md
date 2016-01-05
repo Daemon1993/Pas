@@ -22,11 +22,12 @@
 
 
 - MVP的架构module
-- 
+
 ![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-8cd2104c2a47c9ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 - 工具module 包括自定义的View 下拉刷新 RecyclerViewAdapter的封装(addHead addFoot loadMore) 
+
 ![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-76bcef9ad9f80dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 主要内容大致如下
@@ -34,16 +35,19 @@
 
 ![Paste_Image.png](https://github.com/Daemon1993/Pas/blob/master/pics/big1.jpg)
 
+- 新闻模块 
 
-- 新闻模块 数据显示 RecyclerView 详情WebView查看 随机5个内容模块展示  下拉刷新 加载更多 
+数据显示 RecyclerView 详情WebView查看 随机5个内容模块展示  下拉刷新 加载更多 
 
 - 音乐模块 
+
 1 图片背景虚化(高斯模糊 NDK实现-因为网上的高斯模糊java代码会有相关问题-这里写过一篇blog 地址  [android 图片 高斯模糊 Blur Android Studio JNI NDK 生成 so 问题汇总](http://www.jianshu.com/p/d3ab6de52712) ) 
 2 圆形进度View 选择的圆形头像 周边的红色边框是可以设置0-360 可以在根据音乐播放进度显示 考虑到选择如果加上进度就会头晕 可以用在状态栏进度显示 写过一篇博客 
 [圆形图片 周边进度 Progress 音乐播放进度](http://www.jianshu.com/p/d86dd3a37941)
 3 自定义View 显示歌词  
 
 - 图片模块
+
 搜索功能 分类查看 加载更多 大图查看 
 
 这个APP是 闲暇时间练手的 有些地方可能比较粗糙因为很多图片都是到处拿过来的
