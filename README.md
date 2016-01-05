@@ -14,14 +14,14 @@
 - 说说项目内容吧 内容不多 以后如果有想实现的功能也会加入进去 
  接口都是抓取的 新闻-天天快报 图片-androi壁纸 音乐-天天动听  如果有相关权益损害还请告知 
 
-项目结构如下 
+##项目结构如下 
 
 ![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-57b97712144e8b3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-b8f4f87df588cd24.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-- MVP的架构module
+##MVP的架构module
 
 ![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-8cd2104c2a47c9ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -30,7 +30,7 @@
 
 ![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-76bcef9ad9f80dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-主要内容大致如下
+##主要内容大致如下
  
 
 ![Paste_Image.png](https://github.com/Daemon1993/Pas/blob/master/pics/big1.jpg)
@@ -42,8 +42,10 @@
 - 音乐模块 
 
 1 图片背景虚化(高斯模糊 NDK实现-因为网上的高斯模糊java代码会有相关问题-这里写过一篇blog 地址  [android 图片 高斯模糊 Blur Android Studio JNI NDK 生成 so 问题汇总](http://www.jianshu.com/p/d3ab6de52712) ) 
+
 2 圆形进度View 选择的圆形头像 周边的红色边框是可以设置0-360 可以在根据音乐播放进度显示 考虑到选择如果加上进度就会头晕 可以用在状态栏进度显示 写过一篇博客 
 [圆形图片 周边进度 Progress 音乐播放进度](http://www.jianshu.com/p/d86dd3a37941)
+
 3 自定义View 显示歌词  
 
 - 图片模块
@@ -56,4 +58,4 @@
 
 同时 也是在实战中加深MVP的理解 如果有发现一些地方做的不好的 可以通过联系方式告诉我  
 
-
+##联系方式965204390@qq.com
