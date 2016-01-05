@@ -12,7 +12,7 @@
 [https://github.com/bboyfeiyu/android-tech-frontier/tree/master/androidweekly/%E4%B8%80%E7%A7%8D%E5%9C%A8android%E4%B8%AD%E5%AE%9E%E7%8E%B0MVP%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%96%B0%E6%80%9D%E8%B7%AF](https://github.com/bboyfeiyu/android-tech-frontier/tree/master/androidweekly/%E4%B8%80%E7%A7%8D%E5%9C%A8android%E4%B8%AD%E5%AE%9E%E7%8E%B0MVP%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%96%B0%E6%80%9D%E8%B7%AF)
 
 - 说说项目内容吧 内容不多 以后如果有想实现的功能也会加入进去 
- 接口都是抓取的 新闻-天天快报 图片-androi壁纸 音乐-天天动听  如果有相关权益损害还请告知 
+ 接口都是抓取的 新闻-天天快报 图片-android壁纸 音乐-天天动听  如果有相关权益损害还请告知 
 
 ##项目结构如下 
 
