@@ -4,6 +4,7 @@
 前段时间 看到MVP比较火热 所以也查了相关资料
 - 发现主流有两种 核心就是
 1：让Activity/Fragment 作为View 实现V层 抽取本来在Activity/Fragment中的逻辑处理到Presenter
+
 2：让Activity/Fragment 作为Presenter实现罗基础  抽取界面显示View 作为V层
 
 这里使用第二种 试试这种小众的实现方式
@@ -19,8 +20,10 @@
 
 ![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-b8f4f87df588cd24.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+
 - MVP的架构module
 ![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-8cd2104c2a47c9ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 - 工具module 包括自定义的View 下拉刷新 RecyclerViewAdapter的封装(addHead addFoot loadMore) 
 ![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-76bcef9ad9f80dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
