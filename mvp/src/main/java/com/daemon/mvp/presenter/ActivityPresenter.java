@@ -8,11 +8,9 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.daemon.mvp.R;
-import com.daemon.mvp.model.CloseView;
 import com.daemon.mvp.utils.AppManager;
 import com.daemon.mvp.view.IView;
 
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by Daemon on 2015/11/20.
@@ -76,7 +74,7 @@ public abstract class ActivityPresenter<T extends IView> extends AppCompatActivi
 
         setContentView(mActivityLayout);
 
-        EventBus.getDefault().register(this);
+
 
         iView.initWeidget();
 
@@ -113,9 +111,7 @@ public abstract class ActivityPresenter<T extends IView> extends AppCompatActivi
 
     }
 
-    public void onEventMainThread(CloseView event) {
 
-    }
 
     @Override
     protected void onDestroy() {
@@ -123,7 +119,6 @@ public abstract class ActivityPresenter<T extends IView> extends AppCompatActivi
         iView.destory();
         iView=null;
 
-        EventBus.getDefault().unregister(this);
 
         AppManager.getAppManager().finishActivity(this);
     }

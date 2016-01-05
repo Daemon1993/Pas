@@ -1,5 +1,6 @@
 package com.daemon.pas.presenter.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -217,7 +218,10 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            Intent intent=new Intent(this,AboutActivity.class);
+            startActivity(intent);
+            
             return true;
         } else if (id == R.id.action_search) {
 

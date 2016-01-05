@@ -20,7 +20,7 @@ import com.daemon.pas.common.API;
 import com.daemon.pas.model.NewsItemData;
 import com.daemon.pas.presenter.MainActivityInterface;
 import com.daemon.pas.presenter.activity.MainActivity;
-import com.daemon.pas.presenter.activity.NewsDetailActivity;
+import com.daemon.pas.presenter.activity.WebViewActivity;
 import com.daemon.pas.presenter.adapter.FragmentNewsItemAdapter;
 import com.daemon.pas.presenter.adapter.RecyclerViewListener;
 import com.daemon.pas.ui.fragment.FragmentNewsItemView;
@@ -321,8 +321,8 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
 
     @Override
     public void onClickItem(int adapterItemPosition) {
-        Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-        intent.putExtra(NewsDetailActivity.URL, newslist.get(adapterItemPosition).getUrl());
+        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+        intent.putExtra(WebViewActivity.URL, newslist.get(adapterItemPosition).getUrl());
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getActivity().startActivity(intent);
 

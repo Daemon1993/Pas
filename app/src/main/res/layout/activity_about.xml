@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.daemon.pas.presenter.activity.AboutActivity">
+
+    <!--Toolbar-->
+    <include layout="@layout/custom_toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/head" />
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/about_ll_item"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="项目地址"
+            android:textColor="@color/content_balck" />
+
+        <TextView
+            android:id="@+id/tv_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="https://github.com/Daemon1993/Pas"
+            android:textColor="@color/green" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/about_ll_item">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前版本"
+            android:textColor="@color/content_balck" />
+
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="v1.0.0"
+            android:textColor="@color/content_tint_black" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/about_ll_item">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个人主页"
+            android:textColor="@color/content_balck" />
+
+        <TextView
+            android:id="@+id/tv_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="https://github.com/Daemon1993"
+            android:textColor="@color/green" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/about_ll_item">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系方式"
+            android:textColor="@color/content_balck" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="965204390@qq.com"
+            android:textColor="@color/content_tint_black" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

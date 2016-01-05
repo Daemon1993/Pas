@@ -24,13 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presenter.activity.NewsDetailActivity" />
+        <activity android:name=".presenter.activity.WebViewActivity" />
         <activity android:name=".presenter.activity.SearchPicActivity" />
         <activity android:name=".presenter.activity.PicTypeDetailActivity" />
         <activity android:name=".presenter.activity.ImageDetailActivity" />
 
         <service android:name=".presenter.service.music.MusicPlayService" />
 
+        <activity android:name=".presenter.activity.AboutActivity"></activity>
     </application>
 
 </manifest>

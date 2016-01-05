@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import com.daemon.mvp.model.CloseView;
 import com.daemon.mvp.view.IView;
 
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by Daemon on 2015/11/20.
@@ -23,7 +22,7 @@ public abstract class FragmentPresenter <T extends IView> extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
+
 
         try {
             iView=getIViewClass().newInstance();
@@ -75,7 +74,7 @@ public abstract class FragmentPresenter <T extends IView> extends Fragment {
         super.onDestroy();
         iView.destory();
         iView=null;
-        EventBus.getDefault().unregister(this);
+
 
     }
 
