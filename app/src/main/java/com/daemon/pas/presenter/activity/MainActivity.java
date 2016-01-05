@@ -20,7 +20,6 @@ import com.daemon.pas.presenter.MainActivityInterface;
 import com.daemon.pas.presenter.fragment.FragmentMusic;
 import com.daemon.pas.presenter.fragment.FragmentNews;
 import com.daemon.pas.presenter.fragment.FragmentPic;
-import com.daemon.pas.presenter.fragment.FragmentVideo;
 import com.daemon.pas.ui.activity.MainActivityView;
 import com.daemon.pas.ui.dialog.FragmentDialog_Search;
 import com.snappydb.DB;
@@ -41,7 +40,7 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
     private FragmentNews fragmentNews;
     private FragmentMusic fragmentMusic;
     private FragmentPic fragmentPic;
-    private FragmentVideo fragmentVideo;
+
 
     public static final String TAG_NEWS = "Tag_news";
     public static final String TAG_MUSIC = "Tag_music";
@@ -57,8 +56,6 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
 
         if (fragmentNews == null && fragment instanceof FragmentNews) {
             fragmentNews = (FragmentNews) fragment;
-        } else if (fragmentVideo == null && fragment instanceof FragmentVideo) {
-            fragmentVideo = (FragmentVideo) fragment;
         } else if (fragmentPic == null && fragment instanceof FragmentPic) {
             fragmentPic = (FragmentPic) fragment;
         } else if (fragmentMusic == null && fragment instanceof FragmentMusic) {
@@ -102,7 +99,7 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
 
         old_title = getSupportActionBar().getTitle().toString();
 
-        iView.setOnClickListener(this, R.id.bt_music, R.id.bt_news, R.id.bt_pic, R.id.bt_video);
+        iView.setOnClickListener(this, R.id.bt_music, R.id.bt_news, R.id.bt_pic);
 
         current_Fragment = new Fragment();
         if (fragmentNews == null) {
@@ -311,16 +308,7 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
 
                 break;
 
-            case R.id.bt_video:
 
-                if (fragmentVideo == null) {
-                    fragmentVideo = new FragmentVideo();
-                }
-
-                updateState(R.id.bt_music, fragmentVideo, TAG_VIDEO);
-
-                iView.drawerLayout.closeDrawer(GravityCompat.START);
-                break;
         }
     }
 
@@ -373,10 +361,7 @@ public class MainActivity extends ActivityPresenter<MainActivityView> implements
                 iView.setToolBarBgColor(0);
 
                 break;
-            case TAG_VIDEO:
-                setToolBarTitle(FragmentVideo.Title);
 
-                break;
         }
     }
 

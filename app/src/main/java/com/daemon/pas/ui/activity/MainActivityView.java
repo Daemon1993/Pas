@@ -25,8 +25,7 @@ public class MainActivityView extends AppView {
     Button btMusic;
     @Bind(R.id.bt_pic)
     Button btPic;
-    @Bind(R.id.bt_video)
-    Button btVideo;
+
     @Bind(R.id.drawer_layout)
     public DrawerLayout drawerLayout;
 

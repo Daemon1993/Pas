@@ -46,5 +46,9 @@ public class API {
 
 
 
+    //优酷
+    public static final String Oauth1="https://openapi.youku.com/v2/oauth2/authorize";
+
+
 
 }

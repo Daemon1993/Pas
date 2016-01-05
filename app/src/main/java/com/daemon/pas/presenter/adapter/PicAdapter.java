@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.daemon.framework.dproxyutil.image.ImageProxyUtils;
+import com.daemon.framework.dutils.dproxyutil.image.ImageProxyUtils;
 import com.daemon.framework.drecyclerviewadapter.DBaseRecyclerViewAdapter;
 import com.daemon.framework.drecyclerviewadapter.DBaseRecyclerViewHolder;
 import com.daemon.pas.R;

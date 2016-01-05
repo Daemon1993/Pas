@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.daemon.framework.dutils.DLog;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.MediaType;
@@ -104,11 +105,7 @@ public class DOkHttp {
             public void onResponse(Response response) throws IOException {
                 final String json = response.body().string();
 
-<<<<<<< HEAD
-                //DLog.e(json);
-=======
-                //LogUtils.e(json);
->>>>>>> origin/master
+                DLog.e(json);
 
                 mainHanlder.post(new Runnable() {
                     @Override

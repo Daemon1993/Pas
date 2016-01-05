@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.daemon.framework.dpullrefresh_loadmore.DPullRefreshLayout;
+import com.daemon.framework.drecyclerviewadapter.DBaseRecyclerViewAdapter1;
 import com.daemon.framework.drecyclerviewadapter.DRecyclerViewAdapter;
 import com.daemon.framework.drecyclerviewadapter.DRecyclerViewScrollListener;
 import com.daemon.framework.okhttp.DOkHttp;
@@ -117,6 +118,15 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
     }
 
 
+    class MyAdapter extends DBaseRecyclerViewAdapter1<NewsItemData.NewslistEntity>{
+
+        public MyAdapter(List<NewsItemData.NewslistEntity> mDatas, Context mContext) {
+            super(mDatas, mContext);
+        }
+
+
+    }
+
     /**
      * 初始化  RecyClerView
      */
@@ -129,6 +139,21 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
         HorizontalDividerItemDecoration horizontalDividerItemDecoration = new HorizontalDividerItemDecoration.Builder(getActivity())
                 .sizeResId(R.dimen.divider)
                 .color(getResources().getColor(R.color.colorLine)).build();
+
+
+        MyAdapter myAdapter=new MyAdapter(newslist, getActivity());
+        myAdapter.setBaseListener(new DBaseRecyclerViewAdapter1.BaseListener<NewsItemData.NewslistEntity>() {
+            @Override
+            public void onclick(int index) {
+
+            }
+
+            @Override
+            public void setData(NewsItemData.NewslistEntity data) {
+
+            }
+        });
+
 
 
         fragmentNewsItemAdapter = new FragmentNewsItemAdapter(newslist, getActivity());
@@ -213,11 +238,7 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
             public void onResponse(String json) {
                 mListener.hiheLoading();
                 iView.setRefreshComplete();
-<<<<<<< HEAD
                 isRefresh=false;
-=======
-
->>>>>>> origin/master
                 try {
                     NewsItemData newsItemData = DOkHttp.getInstance().getGson().fromJson(json, NewsItemData.class);
 
@@ -226,11 +247,7 @@ public class FragmentNewsItem extends FragmentPresenter<FragmentNewsItemView> im
 
                 } catch (SnappydbException e) {
                     e.printStackTrace();
-<<<<<<< HEAD
                 } finally {
-=======
-                }finally {
->>>>>>> origin/master
                     try {
                         snappydb.close();
                     } catch (SnappydbException e) {

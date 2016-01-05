@@ -6,7 +6,6 @@ import android.util.Log;
  * Created by Daemon on 2015/12/28.
  */
 public class DLog {
-<<<<<<< HEAD
     public static final String NULL_TIPS = "Log with null object";
     public static final String PARAM = "Param";
     public static final String NULL = "null";
@@ -102,10 +101,4 @@ public class DLog {
         }
     }
 
-=======
-    public static final String TAG="Daemon- ";
-    public static void  e(String str){
-        Log.e(TAG,str);
-    }
->>>>>>> origin/master
 }

@@ -3,6 +3,7 @@ package com.daemon.pas;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
+import com.daemon.framework.dutils.DLog;
 import com.daemon.framework.dutils.DensityUtil;
 import com.daemon.pas.common.AppRunCache;
 import com.daemon.pas.utils.ImageLoaderSetting;
@@ -45,6 +46,7 @@ public class MyApplication extends MultiDexApplication {
 
         ImageLoaderSetting.initImageLoader(getApplicationContext());
 
+        DLog.ENABLE=false;
 
     }
 

@@ -30,9 +30,6 @@ dependencies {
     compile 'com.github.bumptech.glide:okhttp-integration:1.3.1'
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
-<<<<<<< HEAD
     compile 'com.github.zhaokaiqiang.klog:library:1.3.0'
-=======
->>>>>>> origin/master
 
 }

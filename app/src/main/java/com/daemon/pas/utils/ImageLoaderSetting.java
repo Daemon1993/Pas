@@ -47,9 +47,9 @@ public class ImageLoaderSetting {
 
         //默认
         defaultOptions = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.mipmap.ic_launcher)
-                .showImageForEmptyUri(R.mipmap.ic_launcher)
-                .showImageOnFail(R.mipmap.ic_launcher)
+                .showImageOnLoading(R.mipmap.defaultbg)
+                .showImageForEmptyUri(R.mipmap.defaultbg)
+                .showImageOnFail(R.mipmap.defaultbg)
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .considerExifParams(true)

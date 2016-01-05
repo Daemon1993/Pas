@@ -25,6 +25,8 @@ public abstract class DBaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<D
         this.mItemOnClickListener = mItemOnClickListener;
     }
 
+    public DBaseRecyclerViewHolder mDbaeDBaseRecyclerViewHolder;
+
 
     private List<T> mDatas;
 
@@ -48,7 +50,9 @@ public abstract class DBaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<D
 
     @Override
     public DBaseRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return onCreateViewHolder1(parent, viewType,this);
+        mDbaeDBaseRecyclerViewHolder=onCreateViewHolder1(parent, viewType,this);
+        return mDbaeDBaseRecyclerViewHolder;
+
     }
 
     @Override
@@ -64,3 +68,4 @@ public abstract class DBaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<D
     public abstract DBaseRecyclerViewHolder onCreateViewHolder1(ViewGroup parent, int viewType,DBaseRecyclerViewAdapter dBaseRecyclerViewAdapter);
 
 }
+

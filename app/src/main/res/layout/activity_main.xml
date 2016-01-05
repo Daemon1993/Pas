@@ -47,11 +47,6 @@
                 android:layout_height="wrap_content"
                 android:text="览妹子" />
 
-            <Button
-                android:id="@+id/bt_video"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="看视频" />
         </LinearLayout>
 
     </android.support.v4.widget.DrawerLayout>

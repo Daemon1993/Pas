@@ -41,7 +41,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':mvp')
     compile project(':framework')
-    compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.yqritc:recyclerview-flexibledivider:1.2.6'
     compile 'com.android.support:multidex:1.0.0'
@@ -50,8 +49,5 @@ dependencies {
     compile 'com.snappydb:snappydb-lib:0.5.2'
     compile 'com.esotericsoftware.kryo:kryo:2.24.0'
     compile 'com.commit451:PhotoView:1.2.4'
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
+    
 }

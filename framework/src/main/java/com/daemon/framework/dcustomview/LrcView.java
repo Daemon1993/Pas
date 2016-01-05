@@ -1,6 +1,5 @@
 package com.daemon.framework.dcustomview;
 
-<<<<<<< HEAD
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -11,17 +10,6 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 import com.daemon.framework.R;
-=======
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.os.Build;
-import android.util.AttributeSet;
-import android.widget.TextView;
-
->>>>>>> origin/master
 import com.daemon.framework.dutils.DLog;
 
 import java.util.ArrayList;
@@ -31,17 +19,13 @@ import java.util.List;
  * Created by Daemon on 2015/12/28.
  */
 public class LrcView extends TextView {
-<<<<<<< HEAD
     private  int textColor;
-=======
->>>>>>> origin/master
     private Paint currentPaint;
 
     private String lrcAllContent;
     private List<LrcContent> lrc_lists;
     private int width;
     private int height;
-<<<<<<< HEAD
 
     private  static final int DEFAULTTEXTSIZE=24;
     private static final int DEFAULT_TEXT_COLOR = Color.WHITE;
@@ -64,12 +48,6 @@ public class LrcView extends TextView {
     }
 
 
-=======
-    private Paint currentPaint1;
-    private float textHeight = 50;
-
-    
->>>>>>> origin/master
     class LrcContent {
         public int lrcTime;
         public String lrcContent;
@@ -94,7 +72,6 @@ public class LrcView extends TextView {
 
     public LrcView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-<<<<<<< HEAD
 
 
         TypedArray a=context.obtainStyledAttributes(attrs, R.styleable.LrcView,defStyleAttr,0);
@@ -111,25 +88,20 @@ public class LrcView extends TextView {
     }
 
 
-=======
-        initView();
+    public void setNull(){
+        setText("");
+        lrcAllContent="";
+        lrc_lists=null;
+
+        invalidate();
+
     }
-
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public LrcView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        initView();
-    }
-
->>>>>>> origin/master
     /**
      * 设置歌词
      *
      * @param lrcContent
      */
     public void setLrcContent(String lrcContent) {
-<<<<<<< HEAD
 
         setText("");
 
@@ -143,11 +115,6 @@ public class LrcView extends TextView {
 
         this.lrcAllContent = lrcContent;
 
-=======
-        this.lrcAllContent = lrcContent;
-
-        //解析歌词 抽取title 歌手
->>>>>>> origin/master
 
         lrcAllContent = lrcAllContent.replace("[", "");
         lrcAllContent = lrcAllContent.replace("]", "@");                                 //每一句话的分隔符
@@ -178,11 +145,8 @@ public class LrcView extends TextView {
             }
         }
 
-<<<<<<< HEAD
         currentIndex=0;
 
-=======
->>>>>>> origin/master
         //显示出来
         invalidate();
 
@@ -192,7 +156,10 @@ public class LrcView extends TextView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-<<<<<<< HEAD
+        if(canvas==null){
+            return;
+        }
+
         int currentY = height / 2;
 
         if(lrc_lists==null || lrc_lists.size()==0){
@@ -223,27 +190,6 @@ public class LrcView extends TextView {
         for (int i = currentIndex+1; i <lrc_lists.size(); i++) {
             currentY += textSize;
             canvas.drawText(lrc_lists.get(i).lrcContent, width / 2, currentY, currentPaint);
-=======
-
-        if(lrc_lists==null || lrc_lists.size()==0){
-            return;
-        }
-        int currentY = height / 2;
-
-        //上面的
-        for (int i = 10 - 1; i >= 0; i--) {
-            currentY-=textHeight;
-            canvas.drawText(lrc_lists.get(i).lrcContent, width / 2, currentY, currentPaint1);
-        }
-
-        currentY = height / 2;
-
-        canvas.drawText(lrc_lists.get(10).lrcContent, width / 2, currentY, currentPaint);
-
-        for (int i = 11; i <lrc_lists.size(); i++) {
-            currentY +=textHeight;
-            canvas.drawText(lrc_lists.get(i).lrcContent, width / 2, currentY, currentPaint1);
->>>>>>> origin/master
         }
 
 
@@ -271,11 +217,6 @@ public class LrcView extends TextView {
 
         try {
             if (sArray.length == 3) {
-<<<<<<< HEAD
-=======
-                DLog.e(sArray[0] + "  " + sArray[1] + " " + sArray[2]);
-
->>>>>>> origin/master
                 int min = Integer.parseInt(sArray[0].trim());
                 int second = Integer.parseInt(sArray[1].trim());
                 int mills = Integer.parseInt(sArray[2].trim());
@@ -291,32 +232,16 @@ public class LrcView extends TextView {
 
 
     private void initView() {
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
         setFocusable(true);
 
         currentPaint = new Paint();
         currentPaint.setAntiAlias(true);
         currentPaint.setTextAlign(Paint.Align.CENTER);
-<<<<<<< HEAD
         currentPaint.setColor(textColor);
 
         currentPaint.setTextSize(textSize);
 
         textSize+=10;  //用于每行间距 +10
-=======
-        currentPaint.setColor(Color.parseColor("#FF34A350"));
-        currentPaint.setTextSize(25);
-
-        currentPaint1 = new Paint();
-        currentPaint1.setAntiAlias(true);
-        currentPaint1.setTextAlign(Paint.Align.CENTER);
-        currentPaint1.setColor(Color.parseColor("#FF4081"));
-        currentPaint1.setTextSize(20);
-
->>>>>>> origin/master
 
     }
 
@@ -325,7 +250,6 @@ public class LrcView extends TextView {
         super.onSizeChanged(w, h, oldW, oldH);
         this.width = w;
         this.height = h;
-<<<<<<< HEAD
 
         DLog.e("w "+w +"  h "+h);
     }
@@ -334,9 +258,4 @@ public class LrcView extends TextView {
 
 
 
-=======
-    }
-
-
->>>>>>> origin/master
 }
