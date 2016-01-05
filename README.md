@@ -22,6 +22,7 @@
 
 
 - MVP的架构module
+- 
 ![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-8cd2104c2a47c9ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
@@ -31,7 +32,7 @@
 主要内容大致如下
  
 
-![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-a0bcb549511967e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Paste_Image.png](https://github.com/Daemon1993/Pas/blob/master/pics/big1.jpg)
 
 
 - 新闻模块 数据显示 RecyclerView 详情WebView查看 随机5个内容模块展示  下拉刷新 加载更多 
