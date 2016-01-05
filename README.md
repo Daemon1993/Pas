@@ -5,7 +5,7 @@
 - 发现主流有两种 核心就是
 1：让Activity/Fragment 作为View 实现V层 抽取本来在Activity/Fragment中的逻辑处理到Presenter
 
-2：让Activity/Fragment 作为Presenter实现罗基础  抽取界面显示View 作为V层
+2：让Activity/Fragment 作为Presenter实现逻辑  抽取界面显示View 作为V层
 
 这里使用第二种 试试这种小众的实现方式
 这篇文章有介绍 这种方式
