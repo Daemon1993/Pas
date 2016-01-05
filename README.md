@@ -18,7 +18,7 @@
 
 ![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-57b97712144e8b3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-b8f4f87df588cd24.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![GIF.gif](https://github.com/Daemon1993/Pas/blob/master/pics/GIF.gif)
 
 
 ##MVP的架构module
@@ -57,5 +57,7 @@
 ![QQ图片20160105115049.gif](http://upload-images.jianshu.io/upload_images/831873-4a6b1623755aaac4.gif?imageMogr2/auto-orient/strip)
 
 同时 也是在实战中加深MVP的理解 如果有发现一些地方做的不好的 可以通过联系方式告诉我  
+
+![Paste_Image.png](http://upload-images.jianshu.io/upload_images/831873-57b97712144e8b3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ##联系方式965204390@qq.com
